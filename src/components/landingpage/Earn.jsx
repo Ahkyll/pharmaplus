@@ -1,7 +1,7 @@
 function Earn() {
   return (
     <section className="pt-20 bg-[url('../images/2.png')] bg-cover bg-center h-[100vh] bg-no-repeat text-center">
-      <div className="text-white mt-40 p-10 font-mono bg-[#283c5b] rounded-3xl container mx-auto flex justify-between items-center">
+      <div className="text-white mt-40 p-10 font-mono bg-[#0a051f] rounded-3xl container mx-auto flex justify-between items-center">
         <ul className="flex space-x-10">
           <li className="font-extrabold text-6xl pr-10 border-r-2 border-white">How to Earn NFTs?</li>
           <li className="font-semibold text-4xl pr-10 border-r-2 border-white">

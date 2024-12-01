@@ -16,32 +16,32 @@ function ArtistSpotlight() {
         <h2 className="text-6xl font-bold m-20 text-white">Popular NFT's Collection</h2>
         <ul className="flex space-x-10 justify-center pb-20">
           <li  className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
             PFP and Avatar NFTs
             </a>
           </li>
           <li className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
               Art NFTs
             </a>
           </li>
           <li className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
               Gaming NFTs
             </a>
           </li>
           <li className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
               Music NFTs
             </a>
           </li>
           <li className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
               Sports Collectibles
             </a>
           </li>
           <li className="hover:shadow-black shadow-xl">
-            <a className="inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
+            <a className="inline-block bg-[#0a051f]  hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-sm border border-white">
               Virtual Real Estate
             </a>
           </li>
@@ -65,7 +65,7 @@ function ArtistSpotlight() {
             <a className="bg-transparent  text-white px-5 py-5 rounded font-medium text-sm ">
             </a>
           
-            <NavLink to="/homepage" className="bg-[#283c5b] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-lg  mt-20 border border-white hover:shadow-black shadow-xl">
+            <NavLink to="/homepage" className="bg-[#0a051f] hover:bg-[#c64de4] text-white px-5 py-5 rounded font-medium text-lg  mt-20 border border-white hover:shadow-black shadow-xl">
               View More
             </NavLink>
 

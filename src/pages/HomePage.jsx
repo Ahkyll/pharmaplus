@@ -2,9 +2,16 @@ import React from 'react';
 
 function HomePage() {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold">Welcome to the Homepage!</h1>
-    </div>
+    <section className="bg-[url('../images/2.png')] bg-cover bg-center h-[100vh] bg-no-repeat flex justify-center items-center font-mono">
+      <div className="text-center px-6">
+        <h2 className="text-8xl text-white font-extrabold">
+          Welcome to the Future of Digital Art
+        </h2>
+        <p className="text-gray-300 mt-4 text-xl">
+          Explore, collect, and invest in unique NFT art pieces from top creators.
+        </p>
+      </div>
+    </section>
   );
 }
 

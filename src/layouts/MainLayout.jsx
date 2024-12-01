@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet, useLocation } from 'react-router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -15,7 +14,7 @@ function MainLayout() {
   return (
     <div>
       {!shouldHideHeaderFooter && <Header />}
-      <main className={`container mx-auto ${shouldHideHeaderFooter ? 'py-0' : 'py-10'}`}>
+      <main className={`container mx-auto ${shouldHideHeaderFooter ? 'py-0' : 'py-0'}`}>
         <Outlet />
       </main>
       {!shouldHideHeaderFooter && <Footer />}
