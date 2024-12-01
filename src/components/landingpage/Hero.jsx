@@ -8,7 +8,7 @@ function Hero() {
         <p className="text-gray-300 mt-4 text-2xl pl-20">Explore, collect, and invest in exclusive digital artwork.</p>
         <NavLink
           to="/homepage"
-          className="ml-20 mt-10 inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-10 py-5 rounded font-semibold text-lg border border-white"
+          className="ml-20 mt-10 inline-block bg-[#283c5b] hover:bg-[#c64de4] text-white px-10 py-5 rounded font-semibold text-lg border border-white hover:shadow-black shadow-lg"
         >
           Explore Now
         </NavLink>

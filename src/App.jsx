@@ -4,6 +4,7 @@ import Hero from './components/landingpage/Hero';
 import Earn from './components/landingpage/Earn';
 import ArtistSpotlight from './components/landingpage/ArtistSpotlight';
 import Footer from './components/landingpage/Footer';
+import Creators from './components/landingpage/Creators';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Hero />
       <Earn />
       <ArtistSpotlight />
+      <Creators />
       <Footer />
     </div>
   );
