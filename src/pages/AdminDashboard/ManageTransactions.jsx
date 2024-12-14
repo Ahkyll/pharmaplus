@@ -4,38 +4,42 @@ function ManageTransactions() {
   const [transactions, setTransactions] = useState([
     {
       id: 1,
-      date: '2024-12-07',
+      date: '2024-12-01',
       employee: 'Zoren OS',
-      amount: '₱150.00',
+      amount: '₱3,606.00',
       products: [
-        { name: 'Ascorbic Acid', quantity: 2, price: '₱50.00' },
-        { name: 'Vitamin C', quantity: 1, price: '₱50.00' }
+        { name: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantity: 12, price: '₱225.50' },
+        { name: 'Strepsils Dry Cough Lozenge', quantity: 9, price: '₱100.00' }
       ],
-      items: 3,
+      items: 21,
     },
     {
       id: 2,
-      date: '2024-12-07',
+      date: '2024-12-01',
       employee: 'Zoren OS',
-      amount: '₱220.00',
+      amount: '₱2,404',
       products: [
-        { name: 'Strepsils', quantity: 5, price: '₱44.00' }
+        { name: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantity: 8, price: '₱225.50' },
+        { name: 'Strepsils Dry Cough Lozenge', quantity: 6, price: '₱100.00' }
       ],
-      items: 5,
+      items: 14,
     },
     {
       id: 3,
-      date: '2024-12-06',
+      date: '2024-12-14',
       employee: 'Zoren OS',
-      amount: '₱75.00',
+      amount: '₱1,016',
       products: [
-        { name: 'Biogesic', quantity: 2, price: '₱37.50' }
+        { name: 'Strepsils Dry Cough Lozenge', quantity: 5, price: '₱100.00' },
+        { name: 'Dermatrix Ultra Gel 15g', quantity: 1, price: '₱415.00' },
+        { name: 'Dulcolax', quantity: 1, price: '₱101.00' }
       ],
-      items: 2,
+      items: 7,
     },
   ]);
 
   const [editTransaction, setEditTransaction] = useState(null);
+  const [filterDate, setFilterDate] = useState('');
 
   const handleDelete = (id) => {
     setTransactions(transactions.filter((transaction) => transaction.id !== id));
@@ -43,7 +47,7 @@ function ManageTransactions() {
 
   const handleEdit = (id) => {
     const transactionToEdit = transactions.find((transaction) => transaction.id === id);
-    setEditTransaction(transactionToEdit);
+    setEditTransaction({ ...transactionToEdit });
   };
 
   const handleChange = (e, index, field) => {
@@ -51,7 +55,7 @@ function ManageTransactions() {
     if (field === 'products') {
       updatedTransaction.products[index][e.target.name] = e.target.value;
     } else {
-      updatedTransaction[field] = e.target.value;
+      updatedTransaction[e.target.name] = e.target.value;
     }
     setEditTransaction(updatedTransaction);
   };
@@ -63,9 +67,30 @@ function ManageTransactions() {
     setEditTransaction(null);
   };
 
+  const filteredTransactions = filterDate
+    ? transactions.filter((transaction) => transaction.date === filterDate)
+    : transactions;
+
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
-      <h1 className="text-2xl font-semibold mb-6">Manage Transactions</h1>
+      <h1 className="text-2xl font-bold mb-6 pt-2">Manage Transactions</h1>
+
+      <div className="mb-6 flex flex-col sm:flex-row gap-2">
+        <label className="text-lg">Filter by Date:</label>
+        <input
+          type="date"
+          value={filterDate}
+          onChange={(e) => setFilterDate(e.target.value)}
+          className="px-4 py-2 border rounded"
+        />
+        <button
+          onClick={() => setFilterDate('')}
+          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        >
+          Clear Filter
+        </button>
+      </div>
+
       <div className="bg-white rounded-lg shadow-md">
         <div className="overflow-x-auto">
           <table className="w-full table-auto border-collapse">
@@ -81,7 +106,7 @@ function ManageTransactions() {
               </tr>
             </thead>
             <tbody>
-              {transactions.map((transaction) => (
+              {filteredTransactions.map((transaction) => (
                 <tr key={transaction.id} className="text-center text-sm sm:text-base">
                   <td className="px-2 py-2 sm:px-4 sm:py-2 border">{transaction.id}</td>
                   <td className="px-2 py-2 sm:px-4 sm:py-2 border">{transaction.date}</td>
@@ -118,13 +143,14 @@ function ManageTransactions() {
 
       {/* Edit Modal */}
       {editTransaction && (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
-          <div className="bg-white p-4 sm:p-6 rounded-lg w-4/5 sm:w-1/2">
-            <h2 className="text-2xl mb-4">Edit Transaction</h2>
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 pt-14">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-1/2 md:w-1/3 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-xl font-semibold mb-4">Edit Transaction</h2>
             <div className="mb-4">
               <label className="block mb-2">Date</label>
               <input
                 type="text"
+                name="date"
                 value={editTransaction.date}
                 onChange={(e) => handleChange(e, null, 'date')}
                 className="w-full px-4 py-2 border text-sm sm:text-base"
@@ -134,6 +160,7 @@ function ManageTransactions() {
               <label className="block mb-2">Employee</label>
               <input
                 type="text"
+                name="employee"
                 value={editTransaction.employee}
                 onChange={(e) => handleChange(e, null, 'employee')}
                 className="w-full px-4 py-2 border text-sm sm:text-base"
@@ -141,7 +168,7 @@ function ManageTransactions() {
             </div>
             {editTransaction.products.map((product, index) => (
               <div key={index} className="mb-4">
-                <h3 className="text-lg">Product {index + 1}</h3>
+                <h3 className="text-lg font-semibold">Product {index + 1}</h3>
                 <label className="block mb-2">Product Name</label>
                 <input
                   type="text"
@@ -168,16 +195,16 @@ function ManageTransactions() {
                 />
               </div>
             ))}
-            <div className="mt-4 flex justify-end">
+            <div className=" mt-6">
               <button
                 onClick={handleSave}
-                className="px-6 py-2 bg-blue-500 text-white rounded mr-2 text-xs sm:text-sm"
+                className="w-full py-2 bg-[#5B6EB7] text-white rounded"
               >
-                Save
+                Update Transaction
               </button>
               <button
                 onClick={() => setEditTransaction(null)}
-                className="px-6 py-2 bg-gray-500 text-white rounded text-xs sm:text-sm"
+                className="w-full py-2 bg-gray-500 text-white rounded hover:bg-gray-600 mt-2"
               >
                 Cancel
               </button>

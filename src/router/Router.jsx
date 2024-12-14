@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import LoginLayout from '../layouts/LoginLayout'; // Layout for login
-import MainLayout from '../layouts/MainLayout'; // Layout for dashboards and other pages
-import LoginPage from '../pages/LoginPage'; // Login page
-import AdminDashboard from '../pages/AdminDashboard'; // Admin dashboard
-import EmployeeDashboard from '../pages/EmployeeDashboard'; // Employee dashboard
-import SalesPage from '../pages/EmployeeDashboard/SalesPage'; // Sales page
+import LoginLayout from '../layouts/LoginLayout';
+import MainLayout from '../layouts/MainLayout';
+import LoginPage from '../pages/LoginPage';
+import AdminDashboard from '../pages/AdminDashboard';
+import EmployeeDashboard from '../pages/EmployeeDashboard';
+import SalesPage from '../pages/EmployeeDashboard/SalesPage';
 import OrderPage from '../pages/EmployeeDashboard/OrderPage';
 import ManageEmployees from '../pages/AdminDashboard/ManageEmployees';
 import ManageSuppliers from '../pages/AdminDashboard/ManageSuppliers';
@@ -21,6 +21,7 @@ import AdminProfile from '../pages/AdminDashboard/AdminProfile';
 function Router() {
   return (
     <Routes>
+      
       {/* Login layout route */}
       <Route element={<LoginLayout />}>
         <Route path="/" element={<LoginPage />} />
@@ -28,8 +29,6 @@ function Router() {
 
       {/* Main layout for admin and employee routes */}
       <Route element={<MainLayout />}>
-        {/* Admin routes */}
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
         {/* Employee routes */}
         <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
@@ -41,6 +40,7 @@ function Router() {
         <Route path="/employee/attendance" element={<AttendancePage />} />
 
         {/* Admin routes */}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/manage-employees" element={<ManageEmployees />} />
         <Route path="/manage-sales" element={<ManageSales />} />
         <Route path="/manage-suppliers" element={<ManageSuppliers />} />

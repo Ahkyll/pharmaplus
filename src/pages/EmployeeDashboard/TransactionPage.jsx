@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import styles for the calendar
+import 'react-calendar/dist/Calendar.css';
 
 function TransactionPage() {
-  // Sample transactions for multiple dates with unique transaction IDs
   const transactionsData = {
     '2024-12-01': [
       {
@@ -12,8 +11,8 @@ function TransactionPage() {
           { productName: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantitySold: 12, price: 225.50, totalSales: 2706 },
           { productName: 'Strepsils Dry Cough Lozenge', quantitySold: 9, price: 100, totalSales: 900 },
         ],
-        totalSales: 2706 + 900, // Total sales for this transaction
-        totalQuantity: 12 + 9, // Total quantity sold for this transaction
+        totalSales: 2706 + 900,
+        totalQuantity: 12 + 9,
       },
       {
         transactionId: 'T002',
@@ -21,32 +20,32 @@ function TransactionPage() {
           { productName: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantitySold: 8, price: 225.50, totalSales: 1804 },
           { productName: 'Strepsils Dry Cough Lozenge', quantitySold: 6, price: 100, totalSales: 600 },
         ],
-        totalSales: 1804 + 600, // Total sales for this transaction
-        totalQuantity: 8 + 6, // Total quantity sold for this transaction
+        totalSales: 1804 + 600,
+        totalQuantity: 8 + 6,
       },
     ],
-    '2024-12-02': [
+    '2024-12-14': [
       {
         transactionId: 'T003',
         products: [
-          { productName: 'Strepsils Dry Cough Lozenge', quantitySold: 10, price: 100, totalSales: 1000 },
-          { productName: 'Dermatrix Ultra Gel 15g', quantitySold: 3, price: 415, totalSales: 1245 },
+          { productName: 'Strepsils Dry Cough Lozenge', quantitySold: 5, price: 100, totalSales: 500 },
+          { productName: 'Dermatrix Ultra Gel 15g', quantitySold: 1, price: 415, totalSales: 415 },
           { productName: 'Dulcolax Tablet 5mg', quantitySold: 1, price: 101, totalSales: 101 },
         ],
-        totalSales: 1000 + 1245 + 101, // Total sales for this transaction
-        totalQuantity: 10 + 3 + 1, // Total quantity sold for this transaction
+        totalSales: 500 + 415 + 101,
+        totalQuantity: 5 + 1 + 1,
       },
     ],
-    // Add more data as needed
+
   };
 
-  const [selectedDate, setSelectedDate] = useState(new Date()); // State for selected date
-  const formattedDate = selectedDate.toLocaleDateString('en-CA'); // Format date to YYYY-MM-DD
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const formattedDate = selectedDate.toLocaleDateString('en-CA');
 
-  // Get the transactions for the selected date
+
   const transactions = transactionsData[formattedDate] || [];
 
-  // Calculate total sales and total quantity for the selected day
+
   const calculateTotalSales = () => {
     return transactions.reduce((sum, transaction) => sum + transaction.totalSales, 0);
   };
@@ -57,7 +56,7 @@ function TransactionPage() {
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-2xl font-semibold mb-4">Transactions</h1>
+      <h1 className="text-2xl font-bold mb-4 pt-2">Transactions</h1>
 
       {/* Calendar for selecting date */}
       <div className="bg-white shadow-md rounded-lg p-4 mb-6">

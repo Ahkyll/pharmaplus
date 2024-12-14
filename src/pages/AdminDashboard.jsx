@@ -39,7 +39,7 @@ function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-100r">
       <div className="p-4 md:p-6">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center pt-2">
           Welcome Zoren Admin
         </h1>
 

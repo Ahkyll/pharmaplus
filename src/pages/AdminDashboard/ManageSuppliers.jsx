@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 function ManageSuppliers() {
   const [suppliers, setSuppliers] = useState([
-    { id: 1, name: 'Supplier 1', location: 'Philippines', contact: 'sup1@example.com', supplied: '500 stocks', price: '10000'},
-    { id: 2, name: 'Supplier 2', location: 'OKKK', contact: 'sup2@example.com', supplied: '500 stocks', price: '20000' },
+    { id: 1, name: 'MedMart', location: 'Address 1', contact: 'sup1@example.com', supplied: '500 stocks', price: '10000' },
+    { id: 2, name: 'MediSupply', location: 'Address 2', contact: 'sup2@example.com', supplied: '500 stocks', price: '20000' },
   ]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -38,8 +38,8 @@ function ManageSuppliers() {
     const nextId = suppliers.length + 1;
     setSuppliers([...suppliers, { id: nextId, ...newSupplier }]);
     setNewSupplier({ name: '', location: '', contact: '', price: '' });
-    setNewSupplier({ name: '', location: '', contact: '', supplied: '', price: ''});
-    setNewSupplier({ name: '', location: '', contact: '', price: ''  });
+    setNewSupplier({ name: '', location: '', contact: '', supplied: '', price: '' });
+    setNewSupplier({ name: '', location: '', contact: '', price: '' });
     closeAddModal();
   };
 
@@ -57,7 +57,7 @@ function ManageSuppliers() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-2xl font-semibold mb-6">Manage Suppliers</h1>
+      <h1 className="text-2xl font-bold mb-6 pt-2">Manage Suppliers</h1>
 
       <button
         onClick={openAddModal}
@@ -88,7 +88,7 @@ function ManageSuppliers() {
                 <td className="border-b p-4">{supplier.contact}</td>
                 <td className="border-b p-4">{supplier.supplied}</td>
                 <td className="border-b p-4">₱{supplier.price}</td>
-                <td className="border-b p-4">
+                <td className="border-b p-4 ">
                   <button
                     onClick={() => openEditModal(supplier)}
                     className="px-4 py-1 bg-green-500 text-white rounded hover:bg-green-600"
@@ -109,8 +109,8 @@ function ManageSuppliers() {
       </div>
 
       {isAddModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 sm:w-1/2 md:w-1/3">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center pt-14">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-1/2 md:w-1/3 max-h-[90vh] overflow-y-auto">
             <h2 className="text-xl font-semibold mb-4">Add Supplier</h2>
             <form className="space-y-4">
               <div>
@@ -182,9 +182,10 @@ function ManageSuppliers() {
         </div>
       )}
 
+
       {isEditModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 sm:w-1/2 md:w-1/3">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center pt-14">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-1/2 md:w-1/3 max-h-[90vh] overflow-y-auto">
             <h2 className="text-xl font-semibold mb-4">Edit Supplier</h2>
             <form className="space-y-4">
               <div>
@@ -237,7 +238,7 @@ function ManageSuppliers() {
                   className="w-full px-4 py-2 border rounded"
                 />
               </div>
-              
+
               <button
                 type="button"
                 onClick={handleUpdateSupplier}
@@ -256,6 +257,7 @@ function ManageSuppliers() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

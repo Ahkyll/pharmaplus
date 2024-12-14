@@ -14,24 +14,20 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 function ManageSales() {
   const [itemsSold, setItemsSold] = useState([
-    { item: 'Medicine A', quantity: 10, price: 500, date: '2024-12-10' },
-    { item: 'Medicine B', quantity: 5, price: 700, date: '2024-12-10' },
-    { item: 'Medicine C', quantity: 7, price: 400, date: '2024-12-10' },
-    { item: 'Medicine A', quantity: 15, price: 500, date: '2024-11-10' },
-    { item: 'Medicine B', quantity: 3, price: 700, date: '2024-11-10' },
-    { item: 'Medicine C', quantity: 5, price: 400, date: '2024-11-15' },
+    { item: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantity: 12, price: 225.5, date: '2024-12-01' },
+    { item: 'Strepsils Dry Cough Lozenge', quantity: 9, price: 100, date: '2024-12-01' },
+    { item: 'RiteMED Ascorbic Acid 500mg (Vitamin C)', quantity: 8, price: 225.5, date: '2024-12-01' },
+    { item: 'Strepsils Dry Cough Lozenge', quantity: 6, price: 100, date: '2024-12-01' },
+    { item: 'Strepsils Dry Cough Lozenge', quantity: 5, price: 100, date: '2024-12-14' },
+    { item: 'Dermatrix Ultra Gel 15g', quantity: 1, price: 415, date: '2024-12-14' },
+    { item: 'Dulcolax', quantity: 1, price: 101, date: '2024-12-14' },
   ]);
 
-  const [timePeriod, setTimePeriod] = useState('monthly');
+  const [filterDate, setFilterDate] = useState('');
   const [newItem, setNewItem] = useState({ item: '', quantity: '', price: '', date: '' });
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  // Function to handle adding a new sale item
-  const addItem = () => {
-    setItemsSold([...itemsSold, newItem]);
-    setNewItem({ item: '', quantity: '', price: '', date: '' });
-  };
 
   // Function to handle deleting an item
   const deleteItem = (index) => {
@@ -58,42 +54,10 @@ function ManageSales() {
     setNewItem({ item: '', quantity: '', price: '', date: '' });
   };
 
-  // Prepare sales data for the chart based on the selected time period
-  const salesData = {
-    monthly: {
-      labels: ['Nov', 'Dec'],
-      datasets: [
-        {
-          label: 'Total Sales (₱)',
-          data: [28000, 24500], // Total sales for Nov and Dec
-          backgroundColor: 'rgba(75, 192, 192, 0.6)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-      ],
-    },
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Sales Data',
-      },
-    },
-  };
-
-  // Display the items sold for the selected time period (monthly in this case)
-  const getItemsForTimePeriod = () => {
-    if (timePeriod === 'monthly') {
-      return itemsSold.filter((item) => {
-        const month = new Date(item.date).getMonth(); // Get the month from the date
-        return month === 10 || month === 11; // Filter for November (10) and December (11)
-      });
+  // Filter items based on the selected date
+  const getItemsForSelectedDate = () => {
+    if (filterDate) {
+      return itemsSold.filter((item) => item.date === filterDate);
     }
     return itemsSold;
   };
@@ -101,14 +65,24 @@ function ManageSales() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-2xl font-semibold mb-6">Manage Sales</h1>
-      <div className="mb-6 flex flex-wrap gap-2">
+
+      <div className="mb-6 flex flex-col sm:flex-row gap-2">
+        <label className="text-lg">Filter by Date:</label>
+        <input
+          type="date"
+          value={filterDate}
+          onChange={(e) => setFilterDate(e.target.value)}
+          className="px-4 py-2 border rounded"
+        />
         <button
-          onClick={() => setTimePeriod('monthly')}
-          className="px-4 py-2 bg-[#5B6EB7] text-white rounded"
+          onClick={() => setFilterDate('')}
+          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
         >
-          Monthly
+          Clear Filter
         </button>
       </div>
+
+
 
       <div className="bg-white p-4 rounded-lg shadow-md mb-6 overflow-x-auto">
         <h2 className="text-xl font-semibold mb-4">Products Sold</h2>
@@ -124,7 +98,7 @@ function ManageSales() {
             </tr>
           </thead>
           <tbody>
-            {getItemsForTimePeriod().map((item, index) => (
+            {getItemsForSelectedDate().map((item, index) => (
               <tr key={index}>
                 <td className="border px-4 py-2">{item.item}</td>
                 <td className="border px-4 py-2">{item.quantity}</td>
@@ -214,12 +188,6 @@ function ManageSales() {
           </div>
         </div>
       )}
-
-      <div className="bg-white p-4 rounded-lg shadow-md mt-6">
-        <div className="overflow-x-auto">
-          <Bar data={salesData.monthly} options={options} />
-        </div>
-      </div>
     </div>
   );
 }

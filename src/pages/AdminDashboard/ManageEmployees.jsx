@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 
 function ManageEmployees() {
   const [employees, setEmployees] = useState([
-    { id: 1, name: 'Zoren Admin', role: 'Manager' },
-    { id: 2, name: 'Zoren OS', role: 'Pharmacist' },
-
+    { id: 1, name: 'Zoren Admin', role: 'Manager', hired: '2024-01-01' },
+    { id: 2, name: 'Zoren OS', role: 'Pharmacist', hired: '2024-08-05' },
   ]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -13,6 +12,7 @@ function ManageEmployees() {
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     role: '',
+    hired: '',
   });
 
   const openAddModal = () => setIsAddModalOpen(true);
@@ -36,7 +36,7 @@ function ManageEmployees() {
   const handleAddEmployee = () => {
     const nextId = employees.length + 1;
     setEmployees([...employees, { id: nextId, ...newEmployee }]);
-    setNewEmployee({ name: '', role: '' });
+    setNewEmployee({ name: '', role: '', hired: '' });
     closeAddModal();
   };
 
@@ -55,7 +55,7 @@ function ManageEmployees() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
-      <h1 className="text-2xl font-semibold mb-4">Manage Employees</h1>
+      <h1 className="text-2xl font-bold mb-4 pt-2">Manage Employees</h1>
 
       <button
         onClick={openAddModal}
@@ -65,12 +65,13 @@ function ManageEmployees() {
       </button>
 
       <div className="bg-white shadow-md rounded-lg overflow-x-auto">
-        <table className="w-full text-left border-collapse ">
-          <thead className='bg-[#5B6EB7] text-white'>
+        <table className="w-full text-left border-collapse">
+          <thead className="bg-[#5B6EB7] text-white">
             <tr>
               <th className="border-b p-4">ID</th>
               <th className="border-b p-4">Name</th>
               <th className="border-b p-4">Role</th>
+              <th className="border-b p-4">Hired</th>
               <th className="border-b p-4">Actions</th>
             </tr>
           </thead>
@@ -80,6 +81,7 @@ function ManageEmployees() {
                 <td className="border-b p-4">{employee.id}</td>
                 <td className="border-b p-4">{employee.name}</td>
                 <td className="border-b p-4">{employee.role}</td>
+                <td className="border-b p-4">{employee.hired}</td>
                 <td className="border-b p-4 flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={() => openEditModal(employee)}
@@ -99,7 +101,6 @@ function ManageEmployees() {
           </tbody>
         </table>
       </div>
-
 
       {(isAddModalOpen || isEditModalOpen) && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto">
@@ -130,6 +131,16 @@ function ManageEmployees() {
                   <option value="Pharmacist">Pharmacist</option>
                   <option value="Manager">Manager</option>
                 </select>
+              </div>
+              <div>
+                <label className="block">Hired Date</label>
+                <input
+                  type="date"
+                  name="hired"
+                  value={isAddModalOpen ? newEmployee.hired : selectedEmployee.hired}
+                  onChange={(e) => handleInputChange(e, !isAddModalOpen)}
+                  className="w-full px-4 py-2 border rounded"
+                />
               </div>
               <button
                 type="button"

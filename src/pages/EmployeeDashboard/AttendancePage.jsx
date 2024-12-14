@@ -34,7 +34,7 @@ function AttendancePage() {
 
   return (
     <div className="min-h-screen p-4 bg-gray-100">
-      <h1 className="text-xl font-semibold mb-4 text-center sm:text-2xl">Employee Attendance</h1>
+      <h1 className="text-xl font-bold mb-4 sm:text-2xl pt-2">Employee Attendance</h1>
 
       {/* Calendar Section */}
       <div className="mb-6">

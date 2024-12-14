@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function EmployeeProfilePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to toggle the modal
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -11,14 +11,14 @@ function EmployeeProfilePage() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Profile Page Header */}
-      <h1 className="text-2xl font-semibold mb-6">Employee Profile</h1>
+      <h1 className="text-2xl font-bold mb-6 pt-2">Employee Profile</h1>
 
       {/* Profile Section */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-6 relative">
         <h2 className="text-xl font-semibold mb-4">Profile Information</h2>
         <div className="flex-col gap-4 flex justify-center items-center">
           <img
-            src="/images/azuki.png" // Replace with an actual image URL
+            src="/images/azuki.png"
             alt="Profile"
             className="w-40 h-40 rounded-full border mb-4"
           />
@@ -26,6 +26,7 @@ function EmployeeProfilePage() {
             <p className="text-gray-700 mb-2">Name: Zoren OS</p>
             <p className="text-gray-700 mb-2">Role: Pharmacist</p>
             <p className="text-gray-700 mb-2">Email: zoren@gmail.com</p>
+            <p className="text-gray-700 mb-2">Hired: 2024-08-05</p>
             <p className="text-gray-700 mb-2">Phone: +1234567890</p>
           </div>
           {/* Single Edit Button */}

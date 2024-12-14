@@ -13,39 +13,39 @@ import {
 } from '@heroicons/react/24/outline';
 
 function Sidebar({ menuOpen, toggleMenu, role, isAdminDashboard }) {
-  const sidebarRef = useRef(null); // Reference for sidebar
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const sidebarRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Function to handle when a menu item is clicked
+
   const handleMenuItemClick = (path) => {
     if (path) {
-      navigate(path); // Navigate to the provided path if available
+      navigate(path);
     }
-    toggleMenu(); // Close the sidebar after clicking the item
+    toggleMenu();
   };
 
-  // Close the sidebar when clicking outside of it
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        toggleMenu(); // Close sidebar if clicked outside
+        toggleMenu();
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside); // Cleanup event listener
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [toggleMenu]);
 
   const renderAdminMenu = () => (
     <>
-      <div className="flex flex-col items-center space-y-4 bg-white p-4">
+      <div className="flex flex-col items-center space-y-4 bg-white p-4 ">
         <img
-          src="/images/logo.png" // Replace with actual profile picture URL
+          src="/images/logo.png"
           alt="Profile"
-          className="rounded-full w-40 h-40"
+          className="rounded-full w-40 h-40 border-black border-2"
         />
         <h2 className="text-2xl font-bold">Zoren Admin</h2>
       </div>
@@ -75,18 +75,18 @@ function Sidebar({ menuOpen, toggleMenu, role, isAdminDashboard }) {
       {label}
     </li>
   );
-  
+
   const renderUserMenu = () => (
     <>
       <div className="flex flex-col items-center space-y-4 bg-white p-4">
         <img
-          src="/images/azuki.png" // Replace with actual profile picture URL
+          src="/images/azuki.png"
           alt="Profile"
-          className="rounded-full w-40 h-40"
+          className="rounded-full w-40 h-40 border-black border-2"
         />
         <h2 className="text-2xl font-bold">Zoren OS</h2>
       </div>
-  
+
       <div className="p-8">
         <ul className="text-white text-lg font-semibold">
           <MenuItem icon={<HomeIcon />} label="Home" onClick={() => handleMenuItemClick('/employee-dashboard')} />
@@ -102,7 +102,7 @@ function Sidebar({ menuOpen, toggleMenu, role, isAdminDashboard }) {
       </div>
     </>
   );
-  
+
 
   return (
     menuOpen && (
@@ -111,7 +111,7 @@ function Sidebar({ menuOpen, toggleMenu, role, isAdminDashboard }) {
         ref={sidebarRef}
       >
         {isAdminDashboard ? renderAdminMenu() : renderUserMenu()}
-        {/* Common Logout Menu */}
+
         <div className="p-8">
           <ul className="text-white text-lg font-semibold">
             <MenuItem icon={<PowerIcon />} label="Logout" onClick={() => handleMenuItemClick('/')} />

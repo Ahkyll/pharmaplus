@@ -6,8 +6,7 @@ function MainLayout() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
-        {/* Outlet is where routed components will render */}
+      <main className="flex-grow pt-10">
         <Outlet />
       </main>
       <Footer />
