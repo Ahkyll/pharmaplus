@@ -99,7 +99,7 @@ function OrderPage() {
             onClick={() => handleDiscountSelection(10)}
             className="px-4 py-2 border border-gray-300 rounded-md text-sm bg-[#5B6EB7] text-white"
           >
-            Senior Citizen / PWD (10%)
+            Senior Citizen / PWD (20%)
           </button>
           <button
             onClick={() => handleDiscountSelection(0)}
